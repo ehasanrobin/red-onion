@@ -9,15 +9,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../images/logo2.png';
 import './Header.css';
+import { useState } from 'react';
+import useCart from '../../Hooks/useCart';
 const Header = () => {
-  const cart = <FontAwesomeIcon icon={faShoppingCart} />
+  const shoppingCart = <FontAwesomeIcon icon={faShoppingCart} />
+  const [cart,setCart] = useCart([])
     return (
         <>
             <Navbar  variant="light">
         <Container>
           <Navbar.Brand href="#home" as={Link} to='/home' className='logo'><Image  src={logo}></Image></Navbar.Brand>
           <Nav className="ml-auto nav-menu" >
-            <Nav.Link as={Link} to='cart'>{cart} 1 <span></span> </Nav.Link>
+            <Nav.Link as={Link} to='cart'>{shoppingCart} {cart.length} <span></span> </Nav.Link>
             <Nav.Link as={Link} to="login">Login</Nav.Link>
             <Nav.Link as={Link} to='signin'>
         <Badge pill  >

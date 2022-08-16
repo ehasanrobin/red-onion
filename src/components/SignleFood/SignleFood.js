@@ -4,13 +4,16 @@ import { useParams } from "react-router-dom";
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './SignleFood.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import useCart from '../../Hooks/useCart';
 const SignleFood = (props) => {
     const params = useParams();
     const [items,setItems] = useState([]);
    const [item,setItem] = useState([]);
+   const [cart,setCart] = useCart();
+   
    const [quantity,setQuantity] = useState(1);
 
-   const cart = <FontAwesomeIcon icon={faShoppingCart} />
+   const shoppingCart = <FontAwesomeIcon icon={faShoppingCart} />
 
     useEffect(()=> {
         fetch(`../menus.json`)
@@ -21,6 +24,12 @@ const SignleFood = (props) => {
     
 
     const signleItem = items.find(i => i.key == params.id);
+
+    const handleCart = (item) => {
+        const addToCart = [...cart , item]
+        setCart(addToCart);
+        console.log(cart);
+    }
     
     return (
         <Container>
@@ -38,7 +47,7 @@ const SignleFood = (props) => {
                                     <span className='quantity-indicator' onClick={()=> setQuantity(quantity < 9 ? quantity + 1 : quantity = 9)}>+</span>
                                 </div>
                             </div>
-                            <button className='cart-btn'>{cart} add</button>
+                            <button onClick={() => handleCart(signleItem)} className='cart-btn'>{shoppingCart} add</button>
                            </div>
                         </Col>
                         <Col className='text-center'>
