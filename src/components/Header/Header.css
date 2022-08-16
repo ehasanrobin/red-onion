@@ -1,0 +1,13 @@
+a.logo.navbar-brand {
+    max-width: 171px;
+}
+
+.nav-menu.navbar-nav a {
+    font-size: 20px;
+}
+
+.nav-menu.navbar-nav .badge {
+    padding: 10px 15px;
+    background-color: #F91944 !important;
+
+}

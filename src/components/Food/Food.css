@@ -1,0 +1,21 @@
+.card.m-3.p-3.item-box img {
+    max-width: 300px;
+    margin: auto;
+    /* height: 300px; */
+    padding: 20px
+}
+
+.single-food {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.food-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.food-link:hover {
+    color: #000;
+}

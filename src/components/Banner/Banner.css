@@ -1,0 +1,30 @@
+.banner-section {
+    background-image: url(../../images/bannerbackground.png);
+
+    min-height: 400px;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.search-group.input-group {
+    max-width: 478px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+span#basic-addon2 {
+    border-radius: 50px;
+    margin-left: -31px;
+    background-color: #F91944;
+    z-index: 10;
+    padding: 0px 20px;
+    color: #fff
+}
+
+.search-group.input-group input {
+    border-radius: 50px 50px 50px 50px;
+}
