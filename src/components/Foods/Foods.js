@@ -3,27 +3,21 @@ import { useEffect } from 'react';
 import {Container,Row,Col, Button} from 'react-bootstrap'
 import Food from '../Food/Food';
 import './Foods.css';
-const Foods = () => {
+const Foods = ({props}) => {
     const [foods,setFoods] = useState(1);
     const [breakfast , setBreakfast] = useState([]);
     const [lunches , setLunches] = useState([]);
     const [dinners , setDinners] = useState([]);
-
+    
     useEffect(()=> {
-        fetch("breakfast.json")
+        fetch("menus.json")
         .then(res => res.json())
         .then(data => setBreakfast(data))
     },[])
-    useEffect(()=> {
-        fetch("./lunch.json")
-        .then(res => res.json())
-        .then(data => setLunches(data))
-    },[])
-    useEffect(()=> {
-        fetch("./dinner.json")
-        .then(res => res.json())
-        .then(data => setDinners(data))
-    },[])
+     const breakfast1 = breakfast.filter(b => b.menu == '1');
+     const lunch1 = breakfast.filter(b => b.menu == '2');
+     const dinner1 = breakfast.filter(b => b.menu == '3');
+
     
     return (
         <section>
@@ -38,21 +32,21 @@ const Foods = () => {
                 {
                     foods === 1 &&  <Row md={3} gap={3}>
 
-                    {breakfast.map(food => <Food food={food}></Food>)}
+                    {breakfast1.map(food => <Food food={food} key={food.key} ></Food>)}
                     
                 </Row>
                 }
                 {
                     foods === 2 &&  <Row md={3} gap={3}>
 
-                    {lunches.map(food => <Food food={food}></Food>)}
+                    {lunch1.map(food => <Food food={food} key={food.key}></Food>)}
                     
                 </Row>
                 }
                  {
                     foods === 3 &&  <Row md={3} gap={3}>
 
-                    {dinners.map(food => <Food food={food}></Food>)}
+                    {dinner1.map(food => <Food food={food} key={food.key}></Food>)}
                     
                 </Row>
                 }

@@ -17,11 +17,11 @@ const Header = () => {
         <Container>
           <Navbar.Brand href="#home" as={Link} to='/home' className='logo'><Image  src={logo}></Image></Navbar.Brand>
           <Nav className="ml-auto nav-menu" >
-            <Nav.Link as={Link} to='cart'>{cart} </Nav.Link>
+            <Nav.Link as={Link} to='cart'>{cart} 1 <span></span> </Nav.Link>
             <Nav.Link as={Link} to="login">Login</Nav.Link>
-            <Nav.Link  href="#pricing">
-        <Badge pill as={Link} to='signin' >
-        Sign In
+            <Nav.Link as={Link} to='signin'>
+        <Badge pill  >
+        Sign Up
       </Badge>
       </Nav.Link>
           </Nav>

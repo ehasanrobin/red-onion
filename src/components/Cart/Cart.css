@@ -1,0 +1,40 @@
+.cart-quantity span {
+    padding: 7px;
+    font-size: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background: #ddd;
+}
+
+.cart-item img {
+    max-width: 102px;
+    padding: 10px;
+}
+
+.cart-items {
+
+    padding: 10px;
+
+}
+
+.cart-content p {
+    margin: 0;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.cart-content .price {
+    color: #F91944;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.item-price {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
