@@ -9,7 +9,7 @@ const SignleFood = (props) => {
     const params = useParams();
     const [items,setItems] = useState([]);
    const [item,setItem] = useState([]);
-   const [cart,setCart] = useCart();
+   const {handleCart} = props;
    
    const [quantity,setQuantity] = useState(1);
 
@@ -25,11 +25,7 @@ const SignleFood = (props) => {
 
     const signleItem = items.find(i => i.key == params.id);
 
-    const handleCart = (item) => {
-        const addToCart = [...cart , item]
-        setCart(addToCart);
-        console.log(cart);
-    }
+   
     
     return (
         <Container>

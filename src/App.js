@@ -16,16 +16,21 @@ import { useState } from 'react';
 function App() {
   const [cart,setCart] = useState([]);
 
+  const handleCart = (item) => {
+    const addToCart = [...cart , item]
+    setCart(addToCart);
+    console.log(cart);
+}
   return (
     <>
-       <Header></Header>
+       <Header cart={cart}></Header>
        <Routes>
         <Route path='/' exact element={<Home></Home>}></Route>
         <Route path='/home' exact element={<Home cart={cart}></Home>}></Route>
         <Route path='/login' exact element={<Login></Login>}></Route>
         <Route path='/signin' exact element={<SignIn></SignIn>}></Route>
-        <Route path='/cart' exact element={<Cart></Cart>}></Route>
-        <Route path='/signlefood/:id' exact element={<SignleFood></SignleFood>}></Route>
+        <Route path='/cart' exact element={<Cart cart={cart}></Cart>}></Route>
+        <Route path='/signlefood/:id' exact element={<SignleFood handleCart={handleCart}></SignleFood>}></Route>
        </Routes>
       
       

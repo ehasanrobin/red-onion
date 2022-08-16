@@ -3,12 +3,12 @@ import Banner from '../Banner/Banner';
 import ChooseUs from '../ChooseUs/ChooseUs';
 import Foods from '../Foods/Foods';
 
-const Home = ({cart}) => {
-    console.log(cart);
+const Home = () => {
+    
     return (
         <>
             <Banner></Banner>
-            <Foods cart={cart}></Foods>
+            <Foods ></Foods>
             <ChooseUs></ChooseUs>
         </>
     );

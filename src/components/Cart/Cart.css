@@ -4,10 +4,13 @@
 }
 
 .cart-item {
-    display: flex;
-    align-items: center;
     border-radius: 10px;
     background: #ddd;
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    padding: 5px;
 }
 
 .cart-item img {

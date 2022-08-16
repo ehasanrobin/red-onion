@@ -5,7 +5,19 @@ import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import img from "../../images/breakfast/breakfast1.png"
 import './Cart.css'
-const Cart = () => {
+const Cart = ({cart}) => {
+   
+    let total = 0;
+    let tax = 0;
+    let shipping =0;
+    let grandTotal = 0;
+    for(const product of cart){
+        total = total + product.price;
+        tax = total * (4/100);
+        shipping = total * (7/100);
+        grandTotal = total + tax + shipping;
+    }
+
     return (
         <>
            <Container>
@@ -49,11 +61,12 @@ const Cart = () => {
                 <Col md={4}>
                 <p><b>From:</b>2no gate chittagong <br /> Ariiving in 20 minutes <br /> 6 no road,captain villa </p>
                  <div className='cart-items'>
-                    <div className="cart-item mt-2">
-                        <img src={img} alt="" />
+                    {
+                        cart.map(item =>   <div className="cart-item mt-2">
+                        <img src={item?.img} alt="" />
                         <div className='cart-content'>
-                            <p><b>butter nan</b></p>
-                            <p className='price'>$ 30</p>
+                            <p><b>{item?.name}</b></p>
+                            <p className='price'>$ {item?.price}</p>
                             <small>delivery fees</small>
                         </div>
                         <div className='cart-quantity'>
@@ -61,37 +74,27 @@ const Cart = () => {
                             <span>1</span>
                             <span>+</span>
                         </div>
-                    </div>
-                    <div className="cart-item mt-2">
-                        <img src={img} alt="" />
-                        <div className='cart-content'>
-                            <p><b>butter nan</b></p>
-                            <p className='price'>$ 30</p>
-                            <small>delivery fees</small>
-                        </div>
-                        <div className='cart-quantity'>
-                            <span>-</span>
-                            <span>1</span>
-                            <span>+</span>
-                        </div>
-                    </div>
+                    </div>)
+                    }
+                   
+                    
                  </div>
                  <div className="cart-details">
                     <div className="item-price">
                         <p>Subtotal 4 Items</p>
-                        <p>$320</p>
+                        <p>${total}</p>
                     </div>
                     <div className="item-price">
                         <p>Tax</p>
-                        <p>$10</p>
+                        <p>${tax}</p>
                     </div>
                     <div className="item-price">
                         <p>Delivery Fees</p>
-                        <p>$2</p>
+                        <p>${shipping.toFixed(2)}</p>
                     </div>
                     <div className="item-price">
                         <p>Total</p>
-                        <p>$400</p>
+                        <p><b>${grandTotal.toFixed(2)}</b></p>
                     </div>
                  </div>
                 </Col>

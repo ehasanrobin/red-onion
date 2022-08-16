@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import {Container,Row,Col, Button} from 'react-bootstrap'
 import Food from '../Food/Food';
 import './Foods.css';
-const Foods = ({props}) => {
+const Foods = () => {
     const [foods,setFoods] = useState(1);
     const [breakfast , setBreakfast] = useState([]);
     const [lunches , setLunches] = useState([]);

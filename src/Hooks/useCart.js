@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-const useCart = () => {
+const useCart = (item) => {
     const [cart,setCart] = useState([]);
     
-    useEffect(() => {
-        
-
-    },[cart])
+    useEffect(()=> {
+        const newCart = [...cart,item];
+        setCart(newCart)
+    },[item])
+    
     return [cart,setCart];
 };
 
