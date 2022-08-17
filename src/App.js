@@ -11,15 +11,53 @@ import {
   Route,
 } from "react-router-dom";
 import Cart from './components/Cart/Cart';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { addToDb, getStoredCart } from './utilities/fakeDb';
+
 
 function App() {
   const [cart,setCart] = useState([]);
+  const [products, setProducts] = useState([]);
+ 
+  useEffect(()=> {
+    fetch("../menus.json")
+    .then(res => res.json())
+    .then(data => setProducts(data))
+},[])
+  
+useEffect(()=> {
+    const savedCart = getStoredCart();
+    let addedCart = [];
+    for(const id in savedCart){
+      
+      let addedProduct = products.find(p => p.key == id);
+      if(addedProduct){
+       addedProduct.quantity = savedCart[id];
+       addedCart.push(addedProduct);
+      
+      }
+      setCart(addedCart);
+      
+    }
+},[products])
 
-  const handleCart = (item) => {
-    const addToCart = [...cart , item]
-    setCart(addToCart);
-    console.log(cart);
+  const handleCart = (item,quantity) => {
+    item.quantity = quantity;
+    const addToCart = [...cart , item];
+    let cartItems = cart.find(p => p.key == item.key);
+    
+    if(cartItems == true){
+      setCart(addToCart);
+    }else{
+     const rest = cart.filter(p => p.key !== item.key);
+     
+    const newCart = [...rest,item];
+    setCart(newCart);
+
+    }
+    
+    
+    addToDb(item.key,quantity)
 }
   return (
     <>
@@ -30,7 +68,7 @@ function App() {
         <Route path='/login' exact element={<Login></Login>}></Route>
         <Route path='/signin' exact element={<SignIn></SignIn>}></Route>
         <Route path='/cart' exact element={<Cart cart={cart}></Cart>}></Route>
-        <Route path='/signlefood/:id' exact element={<SignleFood handleCart={handleCart}></SignleFood>}></Route>
+        <Route path='/signlefood/:id' exact element={<SignleFood handleCart={handleCart} ></SignleFood>}></Route>
        </Routes>
       
       

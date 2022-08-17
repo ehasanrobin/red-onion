@@ -14,7 +14,12 @@ import useCart from '../../Hooks/useCart';
 
 const Header = ({cart}) => {
   const shoppingCart = <FontAwesomeIcon icon={faShoppingCart} />
-
+  
+ let quantity = 0;
+  for(const product of cart){
+     quantity = quantity +  product.quantity;
+    
+  }
     
     
     return (
@@ -23,7 +28,7 @@ const Header = ({cart}) => {
         <Container>
           <Navbar.Brand href="#home" as={Link} to='/home' className='logo'><Image  src={logo}></Image></Navbar.Brand>
           <Nav className="ml-auto nav-menu" >
-            <Nav.Link as={Link} to='cart'>{shoppingCart} {cart.length}  <span></span> </Nav.Link>
+            <Nav.Link as={Link} to='cart'>{shoppingCart} {quantity}  <span></span> </Nav.Link>
             <Nav.Link as={Link} to="login">Login</Nav.Link>
             <Nav.Link as={Link} to='signin'>
         <Badge pill  >

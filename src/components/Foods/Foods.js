@@ -6,8 +6,7 @@ import './Foods.css';
 const Foods = () => {
     const [foods,setFoods] = useState(1);
     const [breakfast , setBreakfast] = useState([]);
-    const [lunches , setLunches] = useState([]);
-    const [dinners , setDinners] = useState([]);
+  
     
     useEffect(()=> {
         fetch("menus.json")

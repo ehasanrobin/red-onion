@@ -11,8 +11,11 @@ const Cart = ({cart}) => {
     let tax = 0;
     let shipping =0;
     let grandTotal = 0;
+    let totalQuantity = 0;
+    
     for(const product of cart){
-        total = total + product.price;
+      totalQuantity = totalQuantity + product.quantity;
+        total = total + (product.price * totalQuantity);
         tax = total * (4/100);
         shipping = total * (7/100);
         grandTotal = total + tax + shipping;
@@ -71,7 +74,7 @@ const Cart = ({cart}) => {
                         </div>
                         <div className='cart-quantity'>
                             <span>-</span>
-                            <span>1</span>
+                            <span>{item.quantity}</span>
                             <span>+</span>
                         </div>
                     </div>)
@@ -81,7 +84,7 @@ const Cart = ({cart}) => {
                  </div>
                  <div className="cart-details">
                     <div className="item-price">
-                        <p>Subtotal 4 Items</p>
+                        <p>Subtotal {totalQuantity} Items</p>
                         <p>${total}</p>
                     </div>
                     <div className="item-price">
