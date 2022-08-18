@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './SignleFood.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import useCart from '../../Hooks/useCart';
+
 const SignleFood = (props) => {
     const params = useParams();
     const [items,setItems] = useState([]);
@@ -26,7 +26,7 @@ const SignleFood = (props) => {
     if(singleItem){
         singleItem.quantity = quantity;
     }
-    console.log()
+    
     
 
     

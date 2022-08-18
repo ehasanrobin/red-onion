@@ -15,7 +15,7 @@ const Cart = ({cart}) => {
     
     for(const product of cart){
       totalQuantity = totalQuantity + product.quantity;
-        total = total + (product.price * totalQuantity);
+        total = total + product.price * product.quantity;
         tax = total * (4/100);
         shipping = total * (7/100);
         grandTotal = total + tax + shipping;
