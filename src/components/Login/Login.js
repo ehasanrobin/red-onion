@@ -4,9 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Login.css';
 import { Link } from "react-router-dom";
-
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase/firebase.init'
 
 const Login = () => {
+
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
     return (
         <section className='login-section'>
 
@@ -36,7 +39,9 @@ const Login = () => {
       <div className='text-center pt-4 login-text'>
       <Link as={Link} replace to='/signin' className='m-auto'>don't have an account?</Link>
       </div>
+      
     </Form>
+    <button className='btn' onClick={() => signInWithGoogle()}>google</button>
                     </Col>
                 </Row>
             </Container>
