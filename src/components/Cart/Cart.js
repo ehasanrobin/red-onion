@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../images/breakfast/breakfast1.png"
 import './Cart.css'
 const Cart = ({cart}) => {
@@ -12,6 +12,9 @@ const Cart = ({cart}) => {
     let shipping =0;
     let grandTotal = 0;
     let totalQuantity = 0;
+    const [quantity,setQuantity] = useState(1);
+    let navigate = useNavigate();
+    console.log(quantity);
     
     for(const product of cart){
       totalQuantity = totalQuantity + product.quantity;
@@ -20,14 +23,18 @@ const Cart = ({cart}) => {
         shipping = total * (7/100);
         grandTotal = total + tax + shipping;
     }
+const handleCheckout = (event)=> {
+  event.preventDefault();
+  navigate("/checkout", { replace: true });
 
+}
     return (
         <>
            <Container>
             <Row>
                 <Col md={8}>
                 
-                <Form className='w-80 py-4 m-auto login-form'>
+                <Form onSubmit={handleCheckout} className='w-80 py-4 m-auto login-form'>
                 <h2 className='border-bottom py-2 mb-3'>Edit Delivery Details</h2>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         
@@ -68,14 +75,14 @@ const Cart = ({cart}) => {
                         cart.map(item =>   <div className="cart-item mt-2">
                         <img src={item?.img} alt="" />
                         <div className='cart-content'>
-                            <p><b>{item?.name}</b></p>
+                            <Link to={`/signlefood/${item.key}`}><p><b>{item?.name}</b></p></Link>
                             <p className='price'>$ {item?.price}</p>
                             <small>delivery fees</small>
                         </div>
                         <div className='cart-quantity'>
-                            <span>-</span>
-                            <span>{item.quantity}</span>
-                            <span>+</span>
+                            <span onClick={()=> setQuantity(quantity  - 1)}>-</span>
+                            <span oncl>{item.quantity } {} </span>
+                            <span onClick={()=> setQuantity(quantity  + 1)}> +</span>
                         </div>
                     </div>)
                     }

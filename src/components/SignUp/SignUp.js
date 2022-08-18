@@ -3,44 +3,66 @@ import { Col, Container, Image, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './SignIn.css'
-import { Link } from "react-router-dom";
-const SignIn = () => {
+import { Link, useNavigate } from "react-router-dom";
+import { useCreateUserWithEmailAndPassword,useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from '../../firebase/firebase.init';
+
+const SignIn =   () => {
+  const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, error] = useUpdateProfile(auth);
+  let navigate = useNavigate();
+  const displayName = async()=> {
+  return await  updateProfile('robin');
+  }
+  const handleRegister =  (event) => {
+    event.preventDefault();
+    let displayName = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const confirm = event.target.confirm.value;
+
+    if(password === confirm){
+      createUserWithEmailAndPassword(email, password);
+      displayName();
+      navigate("./home", { replace: true });
+    }
+    
+
+  }
     return (
         <section className='login-section'>
             <Container>
                 <Row>
                     <Col>
                     
-                    <Form className='w-50 py-4 m-auto login-form'>
+                    <Form onSubmit={handleRegister} className='w-50 py-4 m-auto login-form'>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="name" name='name' placeholder="Your Name" />
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control type="email" name='email' placeholder="Enter email" />
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" name='password' placeholder="Enter email" />
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Label>Confirm Password</Form.Label>
+        <Form.Control type="password" name='confirm' placeholder="Confirm Password" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
+      
       <Button className='form-control' variant="primary" type="submit">
         Register
       </Button>

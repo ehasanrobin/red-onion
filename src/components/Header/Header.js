@@ -10,10 +10,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../images/logo2.png';
 import './Header.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 import auth from '../../firebase/firebase.init';
 const Header = ({cart}) => {
   const shoppingCart = <FontAwesomeIcon icon={faShoppingCart} />
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
+ 
     return (
         <>
             <Navbar  variant="light">
@@ -21,16 +23,24 @@ const Header = ({cart}) => {
           <Navbar.Brand href="#home" as={Link} to='/home' className='logo'><Image  src={logo}></Image></Navbar.Brand>
           <Nav className="ml-auto nav-menu" >
 
-          {
-            user &&  <Nav.Link as={Link} to='cart'>welcome,<b>{user?.displayName}</b> <span></span> </Nav.Link>
-          }
+          
+          
             <Nav.Link as={Link} to='cart'>{shoppingCart} {cart.length} <span></span> </Nav.Link>
-            <Nav.Link as={Link} to="login">Login</Nav.Link>
+            {
+            user ?  <Nav.Link as={Link} onClick={()=> signOut(auth)} to="">logout</Nav.Link>
+            : <><Nav.Link as={Link} to="login">Login</Nav.Link>
             <Nav.Link as={Link} to='signin'>
         <Badge pill  >
         Sign Up
       </Badge>
-      </Nav.Link>
+      </Nav.Link></>
+          }
+       {
+            user &&  <Nav.Link as={Link} to='cart'>welcome,<b>{user?.displayName}</b> <span></span> </Nav.Link>
+          }     
+          {
+            user && <img className='profileImg' src={user.photoURL}/>
+          }
           </Nav>
         </Container>
       </Navbar>

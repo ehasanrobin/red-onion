@@ -3,13 +3,27 @@ import { Col, Container, Image, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Login.css';
-import { Link } from "react-router-dom";
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSignInWithGoogle , useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import {signInWithEmailAndPassword} from 'firebase/auth';
 import auth from '../../firebase/firebase.init'
 
 const Login = () => {
-
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword,user] = useSignInWithEmailAndPassword(auth);
+
+  const login = (event) => {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    console.log(email,password);
+    signInWithEmailAndPassword(email, password)
+    navigate(from, { replace: true });
+  }
+ 
     return (
         <section className='login-section'>
 
@@ -17,10 +31,10 @@ const Login = () => {
                 <Row>
                     <Col>
                     <Image></Image>
-                    <Form className='w-50 py-4 m-auto login-form'>
+                    <Form onSubmit={login} className='w-50 py-4 m-auto login-form'>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control type="email" name='email' placeholder="Enter email" />
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
@@ -28,11 +42,9 @@ const Login = () => {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password" name='password' placeholder="Password" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
+      
       <Button className='form-control' variant="primary" type="submit">
         Sign In
       </Button>

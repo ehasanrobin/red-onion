@@ -13,3 +13,8 @@ a.logo.navbar-brand {
     background-color: #F91944 !important;
 
 }
+
+img.profileImg {
+    max-width: 40px;
+    border-radius: 50%;
+}

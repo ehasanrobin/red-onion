@@ -13,6 +13,8 @@ import {
 import Cart from './components/Cart/Cart';
 import { useEffect, useState } from 'react';
 import { addToDb, getStoredCart } from './utilities/fakeDb';
+import Checkout from './components/Checkout/Checkout';
+import RequiredAuth from './components/RequiredAuth/RequiredAuth';
 
 
 function App() {
@@ -69,6 +71,7 @@ useEffect(()=> {
         <Route path='/signin' exact element={<SignIn></SignIn>}></Route>
         <Route path='/cart' exact element={<Cart cart={cart}></Cart>}></Route>
         <Route path='/signlefood/:id' exact element={<SignleFood handleCart={handleCart} ></SignleFood>}></Route>
+        <Route path='/checkout' exact element={<RequiredAuth><Checkout></Checkout></RequiredAuth>}></Route>
        </Routes>
       
       

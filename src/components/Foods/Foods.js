@@ -29,21 +29,21 @@ const Foods = () => {
                   </Col>  
                 </Row>
                 {
-                    foods === 1 &&  <Row md={3} gap={3}>
+                    foods === 1 &&  <Row md={2} lg={3} gap={3}>
 
                     {breakfast1.map(food => <Food food={food} key={food.key} ></Food>)}
                     
                 </Row>
                 }
                 {
-                    foods === 2 &&  <Row md={3} gap={3}>
+                    foods === 2 &&  <Row md={2} lg={3}  gap={3}>
 
                     {lunch1.map(food => <Food food={food} key={food.key}></Food>)}
                     
                 </Row>
                 }
                  {
-                    foods === 3 &&  <Row md={3} gap={3}>
+                    foods === 3 &&  <Row md={2} lg={3}  gap={3}>
 
                     {dinner1.map(food => <Food food={food} key={food.key}></Food>)}
                     
