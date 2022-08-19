@@ -16,7 +16,7 @@ const Login = () => {
   
   let from = location.state?.from?.pathname || "/";
   const [signInWithGoogle] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword,error] = useSignInWithEmailAndPassword(auth);
   const [user] = useAuthState(auth);
   const google = <FontAwesomeIcon icon={faGoogle} />
 
@@ -26,13 +26,15 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log(email,password);
     signInWithEmailAndPassword(email, password)
-    navigate(from, { replace: true });
+   
   }
   if(user){
   
     return navigate("/", { replace: true });
+  }
+  if(error){
+    console.log(error.message)
   }
     return (
         <section className='login-section'>

@@ -1,9 +1,10 @@
 .login-section {
     background-image: url(../../images/bannerbackground.png);
     background-position: center;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    padding-bottom: 50px;
 
 }
 

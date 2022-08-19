@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { addToDb, getStoredCart } from './utilities/fakeDb';
 import Checkout from './components/Checkout/Checkout';
 import RequiredAuth from './components/RequiredAuth/RequiredAuth';
+import NotFound from './components/NotFound/NotFound';
 
 
 function App() {
@@ -72,6 +73,7 @@ useEffect(()=> {
         <Route path='/cart' exact element={<Cart cart={cart} setCart={setCart}></Cart>}></Route>
         <Route path='/signlefood/:id' exact element={<SignleFood handleCart={handleCart} ></SignleFood>}></Route>
         <Route path='/checkout' exact element={<RequiredAuth><Checkout></Checkout></RequiredAuth>}></Route>
+        <Route path='*' exact element={<NotFound></NotFound>}></Route>
        </Routes>
       
       
