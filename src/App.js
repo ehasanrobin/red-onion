@@ -69,7 +69,7 @@ useEffect(()=> {
         <Route path='/home' exact element={<Home cart={cart}></Home>}></Route>
         <Route path='/login' exact element={<Login></Login>}></Route>
         <Route path='/signin' exact element={<SignIn></SignIn>}></Route>
-        <Route path='/cart' exact element={<Cart cart={cart}></Cart>}></Route>
+        <Route path='/cart' exact element={<Cart cart={cart} setCart={setCart}></Cart>}></Route>
         <Route path='/signlefood/:id' exact element={<SignleFood handleCart={handleCart} ></SignleFood>}></Route>
         <Route path='/checkout' exact element={<RequiredAuth><Checkout></Checkout></RequiredAuth>}></Route>
        </Routes>

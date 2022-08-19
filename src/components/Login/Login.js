@@ -7,13 +7,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithGoogle , useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import auth from '../../firebase/firebase.init'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { useAuthState } from 'react-firebase-hooks/auth';
 const Login = () => {
   let navigate = useNavigate();
   let location = useLocation();
+  
   let from = location.state?.from?.pathname || "/";
   const [signInWithGoogle] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword,user] = useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const [user] = useAuthState(auth);
+  const google = <FontAwesomeIcon icon={faGoogle} />
+
+
 
   const login = (event) => {
     event.preventDefault();
@@ -23,7 +30,10 @@ const Login = () => {
     signInWithEmailAndPassword(email, password)
     navigate(from, { replace: true });
   }
- 
+  if(user){
+  
+    return navigate("/", { replace: true });
+  }
     return (
         <section className='login-section'>
 
@@ -53,7 +63,9 @@ const Login = () => {
       </div>
       
     </Form>
-    <button className='btn' onClick={() => signInWithGoogle()}>google</button>
+    <div className='social-menu'>
+    <button className='btn social-btn' onClick={() => signInWithGoogle()}>{google}</button>
+    </div>
                     </Col>
                 </Row>
             </Container>

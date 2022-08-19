@@ -6,13 +6,16 @@ import './SignIn.css'
 import { Link, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword,useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase/firebase.init';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
 const SignIn =   () => {
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, error] = useUpdateProfile(auth);
+  const [user] = useAuthState(auth);
   let navigate = useNavigate();
-  const displayName = async()=> {
-  return await  updateProfile('robin');
+
+  if(user){
+  
+    return navigate("/", { replace: true });
   }
   const handleRegister =  (event) => {
     event.preventDefault();
@@ -20,11 +23,11 @@ const SignIn =   () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const confirm = event.target.confirm.value;
-
+  
     if(password === confirm){
       createUserWithEmailAndPassword(email, password);
       displayName();
-      navigate("./home", { replace: true });
+      
     }
     
 

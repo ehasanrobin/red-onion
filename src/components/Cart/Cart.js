@@ -5,7 +5,8 @@ import Button from 'react-bootstrap/Button';
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../images/breakfast/breakfast1.png"
 import './Cart.css'
-const Cart = ({cart}) => {
+import { clearTheCart } from '../../utilities/fakeDb';
+const Cart = ({cart,setCart}) => {
    
     let total = 0;
     let tax = 0;
@@ -25,6 +26,8 @@ const Cart = ({cart}) => {
     }
 const handleCheckout = (event)=> {
   event.preventDefault();
+  clearTheCart();
+  setCart([]);
   navigate("/checkout", { replace: true });
 
 }
