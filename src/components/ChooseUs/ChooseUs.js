@@ -21,7 +21,7 @@ const ChooseUs = () => {
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos explicabo veritatis velit suscipit repudiandae optio laudantiu</p>
                     </Col>
                 </Row>
-                <Row md={3}>
+                <Row md={2} lg={3}>
                     <Col className='align-self-start'>
                         <Image src={fastDelivery}></Image>
                         <div className='choose-content pt-4'>

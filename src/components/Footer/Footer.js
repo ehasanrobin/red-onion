@@ -11,13 +11,13 @@ const Footer = () => {
         <div>
             <div className="footer bg-dark">
             <div className="container">     
-                <div className="row row-cols-md-3">       
-                <div className="col">
+                <div className="row row-cols-xl-3">       
+                <div className="col-md-4">
                     <div>
                     <img src={logo} className='logo' style={{maxWidth :'240px'}} alt="" />
                     </div>
                     </div>                
-                    <div className="col">
+                    <div className="col-md-4">
                         <div className="single_footer">
                             <h4>Services</h4>
                             <ul>
@@ -29,7 +29,7 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="col-md-4">
                         <div className="single_footer single_footer_address">
                             <h4>Page Link</h4>
                             <ul>
@@ -63,10 +63,10 @@ const Footer = () => {
                 </div>
                 <hr style={{color: '#fff'}} className='pt-4 pb-4' />
                 <div className="row">
-                    <div className="col">
+                    <div className="col-md-6">
                         <p className="copyright">Copyright © Ehasan  <a href="#">RObin</a>.</p>
                     </div>  
-                    <div className="col text-right footer-links">
+                    <div className="col-md-6 text-right footer-links">
                         <a href=""> privacy</a>
                         <a href=""> term of use</a>
                         <a href=""> pricing</a>

@@ -35,7 +35,7 @@ const SignleFood = (props) => {
     
     return (
         <Container>
-                    <Row className='py-5'>
+                    <Row className='py-5 single-item-row' md={2} xs={1}>
                         <Col className='single-item-col py-5' >
                            <div className='single-item-content'>
                            <h1>{singleItem?.name}</h1>

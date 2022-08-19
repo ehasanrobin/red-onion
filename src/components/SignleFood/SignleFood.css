@@ -37,3 +37,9 @@ img.singleItemImg {
 .quantity-indicator:hover {
     color: #F91944;
 }
+
+@media only screen and (max-width: 768px) {
+    .py-5.single-item-row.row.row-cols-md-2.row-cols-1 {
+        flex-direction: column-reverse;
+    }
+}

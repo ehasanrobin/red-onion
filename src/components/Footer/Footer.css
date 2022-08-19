@@ -218,12 +218,12 @@ button {
     color: #ff3666;
 }
 
-.col.text-right.footer-links a {
+.text-right.footer-links a {
     padding: 0px 20px;
     color: #fff;
 }
 
-.col.text-right.footer-links {
+.text-right.footer-links {
     margin: auto;
     text-align: right;
 }
