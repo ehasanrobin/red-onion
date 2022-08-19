@@ -41,7 +41,7 @@ const Login = () => {
                 <Row>
                     <Col>
                     <Image></Image>
-                    <Form onSubmit={login} className='w-50 py-4 m-auto login-form'>
+                    <Form onSubmit={login} className='py-4 m-auto login-form'>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" name='email' placeholder="Enter email" />

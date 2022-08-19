@@ -12,6 +12,9 @@
     padding: 50px;
     margin: 30px auto !important;
     border-radius: 10px;
+    max-width: 700px !important;
+    width: 90%;
+
 }
 
 .login-form Button[type='submit'] {

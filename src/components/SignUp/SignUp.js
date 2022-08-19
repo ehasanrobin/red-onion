@@ -38,7 +38,7 @@ const SignIn =   () => {
                 <Row>
                     <Col>
                     
-                    <Form onSubmit={handleRegister} className='w-50 py-4 m-auto login-form'>
+                    <Form onSubmit={handleRegister} className='py-4 m-auto login-form'>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Name</Form.Label>
         <Form.Control type="name" name='name' placeholder="Your Name" />
