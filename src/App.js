@@ -16,6 +16,7 @@ import { addToDb, getStoredCart } from './utilities/fakeDb';
 import Checkout from './components/Checkout/Checkout';
 import RequiredAuth from './components/RequiredAuth/RequiredAuth';
 import NotFound from './components/NotFound/NotFound';
+import AddProduct from './components/AddProdcut/AddProduct';
 
 
 function App() {
@@ -66,13 +67,14 @@ useEffect(()=> {
     <>
        <Header cart={cart}></Header>
        <Routes>
-        <Route path='/' exact element={<Home></Home>}></Route>
-        <Route path='/home' exact element={<Home cart={cart}></Home>}></Route>
-        <Route path='/login' exact element={<Login></Login>}></Route>
-        <Route path='/signin' exact element={<SignIn></SignIn>}></Route>
-        <Route path='/cart' exact element={<Cart cart={cart} setCart={setCart}></Cart>}></Route>
-        <Route path='/signlefood/:id' exact element={<SignleFood handleCart={handleCart} ></SignleFood>}></Route>
-        <Route path='/checkout' exact element={<RequiredAuth><Checkout></Checkout></RequiredAuth>}></Route>
+        <Route path='/'  element={<Home></Home>}></Route>
+        <Route path='/home'  element={<Home cart={cart}></Home>}></Route>
+        <Route path='/login'  element={<Login></Login>}></Route>
+        <Route path='/signin'  element={<SignIn></SignIn>}></Route>
+        <Route path='/cart'  element={<Cart cart={cart} setCart={setCart}></Cart>}></Route>
+        <Route path='/signlefood/:id'  element={<SignleFood handleCart={handleCart} ></SignleFood>}></Route>
+        <Route path='/checkout'  element={<RequiredAuth><Checkout></Checkout></RequiredAuth>}></Route>
+        <Route path='/add'  element={<RequiredAuth><AddProduct></AddProduct></RequiredAuth>}></Route>
         <Route path='*' exact element={<NotFound></NotFound>}></Route>
        </Routes>
       

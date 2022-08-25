@@ -4,7 +4,7 @@ import './Food.css'
 import { Link } from "react-router-dom";
 
 const Food = ({food}) => {
-    const {key,id,img,name,price,description} = food;
+    const {_id: key,img,name,price,description} = food;
 
     return (
         <Col className='single-food'> 

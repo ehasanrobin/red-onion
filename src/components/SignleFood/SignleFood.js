@@ -4,34 +4,25 @@ import { useParams } from "react-router-dom";
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import './SignleFood.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import useProdcuts from '../../Hooks/useProdcuts';
 
 const SignleFood = (props) => {
     const params = useParams();
-    const [items,setItems] = useState([]);
+    const [products] = useProdcuts();
    const {handleCart} = props;
    
    const [quantity,setQuantity] = useState(1);
 
    const shoppingCart = <FontAwesomeIcon icon={faShoppingCart} />
 
-    useEffect(()=> {
-        fetch(`../menus.json`)
-        .then(res => res.json())
-        .then(data => setItems(data))
-        
-    },[params.id])
+ 
     
 
-    let singleItem = items.find(i => i.key == params.id);
+    let singleItem = products.find(i => i._id == params.id);
     if(singleItem){
         singleItem.quantity = quantity;
     }
     
-    
-
-    
-
-   
     
     return (
         <Container>

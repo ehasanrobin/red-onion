@@ -22,7 +22,9 @@ const Header = ({cart}) => {
         <Container>
           <Navbar.Brand href="#home" as={Link} to='/home' className='logo'><Image  src={logo}></Image></Navbar.Brand>
           <Nav className="ml-auto nav-menu" >
-
+            {
+              user && <Nav.Link as={Link} to="add">Add Product</Nav.Link>
+            }
           
           
             <Nav.Link as={Link} to='cart'>{shoppingCart} {cart.length} <span></span> </Nav.Link>

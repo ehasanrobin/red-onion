@@ -1,21 +1,17 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import {Container,Row,Col, Button} from 'react-bootstrap'
+import useproducts from '../../Hooks/useProdcuts';
 import Food from '../Food/Food';
 import './Foods.css';
 const Foods = () => {
     const [foods,setFoods] = useState(1);
-    const [breakfast , setBreakfast] = useState([]);
+    const [products ] = useproducts();
   
-    
-    useEffect(()=> {
-        fetch("menus.json")
-        .then(res => res.json())
-        .then(data => setBreakfast(data))
-    },[])
-     const breakfast1 = breakfast.filter(b => b.menu == '1');
-     const lunch1 = breakfast.filter(b => b.menu == '2');
-     const dinner1 = breakfast.filter(b => b.menu == '3');
+
+     const breakfast1 = products.filter(b => b.menu == '1');
+     const lunch1 = products.filter(b => b.menu == '2');
+     const dinner1 = products.filter(b => b.menu == '3');
 
     
     return (
@@ -31,21 +27,21 @@ const Foods = () => {
                 {
                     foods === 1 &&  <Row md={2} lg={3} gap={3}>
 
-                    {breakfast1.map(food => <Food food={food} key={food.key} ></Food>)}
+                    {breakfast1.map(food => <Food food={food} key={food._id} ></Food>)}
                     
                 </Row>
                 }
                 {
                     foods === 2 &&  <Row md={2} lg={3}  gap={3}>
 
-                    {lunch1.map(food => <Food food={food} key={food.key}></Food>)}
+                    {lunch1.map(food => <Food food={food} key={food._id}></Food>)}
                     
                 </Row>
                 }
                  {
                     foods === 3 &&  <Row md={2} lg={3}  gap={3}>
 
-                    {dinner1.map(food => <Food food={food} key={food.key}></Food>)}
+                    {dinner1.map(food => <Food food={food} key={food._id}></Food>)}
                     
                 </Row>
                 }
